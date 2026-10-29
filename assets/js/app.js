@@ -85,7 +85,10 @@ function renderHome() {
   const lessons = published();
   const first = lessons[0];
   // "{word}" in the tagline is highlighted.
-  const tagline = esc(t("tagline")).replace(/\{(.+?)\}/, "<em>$1</em>");
+  // Each space-separated word is kept whole so Burmese never breaks mid-word.
+  const tagline = esc(t("tagline"))
+    .replace(/[^\s{}]+/g, w => `<span class="w">${w}</span>`)
+    .replace(/\{(.+?)\}/, "<em>$1</em>");
 
   const roadmap = (state.route || []).map(r => {
     const open = r.status === "open";
