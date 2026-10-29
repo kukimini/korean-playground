@@ -47,6 +47,12 @@ function published() { return state.lessons.filter(l => l.published); }
 function lessonLabel(l) {
   return state.lang === "ko" ? `${l.number}${t("lesson")}` : `${t("lesson")} ${num(l.number)}`;
 }
+// Accepts a full YouTube link (watch, youtu.be, shorts, live) or a bare video id.
+function youtubeId(v) {
+  const s = String(v || "").trim();
+  const m = s.match(/(?:youtu\.be\/|[?&]v=|\/(?:embed|shorts|live)\/)([\w-]{11})/);
+  return m ? m[1] : (/^[\w-]{11}$/.test(s) ? s : "");
+}
 function glyph(l) {
   return l.glyph || String(pick(l.summary)).split(/\s+/)[0] || "";
 }
@@ -159,8 +165,10 @@ function renderLesson(id) {
   const prev = list[i - 1];
   const next = list[i + 1];
 
-  const video = l.youtube
-    ? `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(l.youtube)}" title="${esc(pick(l.title))}" allowfullscreen loading="lazy"></iframe>`
+  // The standard youtube.com embed, so plays here count as YouTube views.
+  const vid = youtubeId(l.youtube);
+  const video = vid
+    ? `<iframe src="https://www.youtube.com/embed/${vid}?rel=0" title="${esc(pick(l.title))}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>`
     : `<span class="play">${ICON.play}</span><span>${esc(t("videoSoon"))}</span>`;
 
   const files = (l.files || []).map(f => `
