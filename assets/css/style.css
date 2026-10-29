@@ -275,7 +275,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 28px;
 }
 .hero .btn-primary { box-shadow: 0 6px 16px color-mix(in srgb, var(--brand-strong) 28%, transparent); }
 .chips {

@@ -132,7 +132,6 @@ function renderHome() {
     <section class="hero">
       <div class="hero-copy">
         <h1>${tagline}</h1>
-        <p class="lead">${esc(t("heroSub"))}</p>
         <div class="actions">
           ${first ? `<a class="btn btn-primary" href="#/lesson/${esc(first.id)}">${esc(t("startHangul"))} ${ICON.chevron}</a>` : ""}
           <a class="btn btn-ghost" href="#lessons" data-scroll>${esc(t("getPdf"))}</a>
