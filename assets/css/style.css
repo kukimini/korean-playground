@@ -757,6 +757,71 @@ html[lang="my"] .hero h1 { font-size: clamp(1.35rem, 4.4vw, 2.05rem); }
   .brand-en { display: none; }
 }
 
+/* ---------- Phones: compact type, small logo ---------- */
+@media (max-width: 520px) {
+  body { font-size: 15px; }
+  .topbar-inner { height: 50px; }
+  .brand { gap: 4px; }
+  .brand img { width: 22px; margin-right: 2px; }
+  .brand-ko { font-size: .82rem; }
+  .brand-en { font-size: .74rem; }
+  .lang button { min-height: 28px; padding: 0 8px; font-size: .72rem; }
+
+  .hero { padding-top: 20px; }
+  .hero h1, html[lang="my"] .hero h1 { font-size: 1.2rem; line-height: 1.6; }
+  html[lang="my"] .hero h1 { font-size: 1.08rem; }
+  .hero .actions { margin-top: 16px; gap: 8px; }
+  .btn { min-height: 42px; padding: 0 16px; font-size: .88rem; }
+  .btn svg { width: 16px; height: 16px; }
+  .chips { margin-top: 14px; gap: 4px 12px; }
+  .chips li { font-size: .74rem; }
+  .hero-art { width: 150px; margin-top: 8px; }
+  .tile { font-size: 1.6rem; box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .14), 0 6px 14px color-mix(in srgb, var(--tile) 30%, transparent); }
+
+  .section { margin-top: 32px; }
+  .section-head { margin-bottom: 12px; }
+  .section-head h2 { font-size: 1.05rem; }
+  .section-head p, .eyebrow { font-size: .74rem; }
+
+  .helper { padding: 14px 16px; gap: 8px; }
+  .helper h2 { font-size: .95rem; }
+  .helper p { font-size: .78rem; }
+  .helper .q { font-size: .88rem; }
+
+  #roadmap { padding: 18px 14px 4px; }
+  .roadmap li { grid-template-columns: 34px 1fr; gap: 10px; padding-bottom: 14px; }
+  .roadmap li:not(:last-child)::after { left: 16px; top: 36px; }
+  .roadmap .block { width: 34px; height: 34px; border-radius: 10px; font-size: .9rem; }
+  .roadmap .block svg { width: 15px; height: 15px; }
+  .roadmap h3 { font-size: .9rem; }
+  .roadmap p { font-size: .8rem; }
+  .step-label { font-size: .66rem; }
+  .pill { font-size: .66rem; padding: 4px 8px; }
+  .branch strong { font-size: .8rem; }
+  .branch small { font-size: .72rem; }
+  .step-link { font-size: .8rem; min-height: 32px; }
+
+  .lesson-grid { gap: 10px; }
+  .lesson-card { grid-template-columns: 46px 1fr 16px; gap: 12px; padding: 12px; }
+  .glyph { width: 46px; height: 46px; border-radius: 12px; font-size: 1.5rem; }
+  .lesson-card .num { font-size: .7rem; }
+  .lesson-card h3 { font-size: .9rem; }
+  .lesson-card .sub { font-size: .76rem; }
+  .lesson-card .chev { width: 16px; height: 16px; }
+
+  .lesson-head { gap: 12px; }
+  .lesson-head .glyph { width: 56px; height: 56px; font-size: 1.9rem; border-radius: 14px; }
+  .lesson-head h1 { font-size: 1.15rem; }
+  .jamo-row { font-size: 1.15rem; padding: 10px 14px; }
+  .files h2 { font-size: .95rem; }
+  .file strong { font-size: .88rem; }
+  .pager strong { font-size: .84rem; }
+  .waitlist h2 { font-size: 1rem; }
+
+  .footer { font-size: .72rem; }
+  .footer img { width: 30px; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
