@@ -54,6 +54,13 @@ function youtubeId(v) {
   const m = s.match(/(?:youtu\.be\/|[?&]v=|\/(?:embed|shorts|live)\/)([\w-]{11})/);
   return m ? m[1] : (/^[\w-]{11}$/.test(s) ? s : "");
 }
+// Each lesson keeps one block color on its card and its page.
+const TILES = ["orange", "blue", "green", "violet", "red"];
+function tile(l) {
+  const i = state.lessons.filter(x => x.course === l.course).indexOf(l);
+  return TILES[Math.max(i, 0) % TILES.length];
+}
+
 function glyph(l) {
   return l.glyph || String(pick(l.summary)).split(/\s+/)[0] || "";
 }
@@ -116,7 +123,7 @@ function renderHome() {
         </div>
         <div class="lesson-grid">
           ${items.map(l => `
-            <a class="lesson-card" href="#/lesson/${esc(l.id)}">
+            <a class="lesson-card tile-${tile(l)}" href="#/lesson/${esc(l.id)}">
               <span class="glyph" aria-hidden="true">${esc(glyph(l))}</span>
               <span>
                 <span class="num">${esc(lessonLabel(l))}</span>
@@ -240,7 +247,7 @@ function renderLesson(id) {
     </div>`).join("");
 
   app.innerHTML = `
-    <div class="unit-${esc(c.color)}">
+    <div class="lesson-page tile-${tile(l)}">
       <a class="crumb" href="#/">${ICON.back} ${esc(t("back"))}</a>
       <div class="progress">
         <span>${esc(pick(c.title))} · ${esc(t("of", { i: num(pos), n: num(inCourse.length) }))}</span>
