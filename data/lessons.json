@@ -97,11 +97,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-00/korean-playground-L00-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-00/korean-playground-L00-practice.pdf"
+          "path": ""
         }
       ]
     },
@@ -125,11 +125,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-01/korean-playground-L01-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-01/korean-playground-L01-practice.pdf"
+          "path": ""
         }
       ]
     },
@@ -153,11 +153,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-02/korean-playground-L02-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-02/korean-playground-L02-practice.pdf"
+          "path": ""
         }
       ]
     },
@@ -181,11 +181,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-03/korean-playground-L03-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-03/korean-playground-L03-practice.pdf"
+          "path": ""
         }
       ]
     },
@@ -209,11 +209,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-04/korean-playground-L04-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-04/korean-playground-L04-practice.pdf"
+          "path": ""
         }
       ]
     },
@@ -237,11 +237,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": "files/hangul-05/korean-playground-L05-lecture.pdf"
+          "path": ""
         },
         {
           "type": "practice",
-          "path": "files/hangul-05/korean-playground-L05-practice.pdf"
+          "path": ""
         }
       ]
     }
