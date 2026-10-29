@@ -113,9 +113,9 @@
       "published": true,
       "youtube": "",
       "title": {
-        "my": "အခြေခံ သရများ",
+        "my": "အခြေခံ သရ ၁၀ လုံး",
         "ko": "기본 모음",
-        "en": "Basic vowels"
+        "en": "The 10 basic vowels"
       },
       "summary": {
         "my": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ",
@@ -141,9 +141,9 @@
       "published": true,
       "youtube": "",
       "title": {
-        "my": "အခြေခံ ဗျည်းများ",
+        "my": "အခြေခံ ဗျည်း ၁၄ လုံး",
         "ko": "기본 자음",
-        "en": "Basic consonants"
+        "en": "The 14 basic consonants"
       },
       "summary": {
         "my": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ",
@@ -165,7 +165,7 @@
       "id": "hangul-03",
       "course": "hangul",
       "number": 3,
-      "glyph": "각",
+      "glyph": "강",
       "published": true,
       "youtube": "",
       "title": {
@@ -193,13 +193,13 @@
       "id": "hangul-04",
       "course": "hangul",
       "number": 4,
-      "glyph": "애",
+      "glyph": "왜",
       "published": true,
       "youtube": "",
       "title": {
-        "my": "နှစ်ထပ်သရများ",
+        "my": "သရ ပေါင်း (နှစ်ထပ်သရ)",
         "ko": "이중 모음",
-        "en": "Compound vowels"
+        "en": "Combined vowels"
       },
       "summary": {
         "my": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ",
@@ -221,11 +221,11 @@
       "id": "hangul-05",
       "course": "hangul",
       "number": 5,
-      "glyph": "까",
+      "glyph": "빵",
       "published": true,
       "youtube": "",
       "title": {
-        "my": "နှစ်ထပ်ဗျည်းများ",
+        "my": "ဗျည်း နှစ်ထပ်",
         "ko": "쌍자음",
         "en": "Double consonants"
       },
