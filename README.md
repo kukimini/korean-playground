@@ -23,6 +23,7 @@
   "id": "hangul-06",
   "course": "hangul",
   "number": 6,
+  "glyph": "안",
   "published": true,
   "youtube": "유튜브 영상 ID (주소의 v= 뒤 11글자)",
   "title": { "my": "미얀마어 제목", "ko": "한국어 제목", "en": "English title" },
@@ -34,6 +35,7 @@
 }
 ```
 
+- `glyph`는 카드에 크게 보이는 글자 하나예요.
 - `path`가 비어 있으면 "준비 중"으로 보여요.
 - `youtube`가 비어 있으면 "영상 곧 공개"로 보여요.
 - `published`를 `false`로 하면 목록에서 숨겨요.
