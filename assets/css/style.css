@@ -1,20 +1,24 @@
 /* Colors, fonts and radii follow brand/brand-guide.md and the design system. */
 :root {
+  /* White page, navy text, blue as the point color; logo red only in the wordmark. */
+  --page: #F6F7F9;
   --surface: #FFFFFF;
-  --surface-tint: #FFF4F2;
-  --surface-sunk: #FBF7F6;
-  --line: #F1D9D6;
-  --ink: #2B2733;
-  --ink-muted: #6B6475;
-  --brand: #E5484D;
-  --brand-strong: #C43C3C;
+  --surface-tint: #EEF4FD;
+  --surface-sunk: #F4F6F9;
+  --line: #E4E8EE;
+  --ink: #1E2638;
+  --ink-muted: #687085;
+  --brand: #4A8BE8;
+  --brand-strong: #2F6BD0;
+  --logo-red: #E5484D;
+  --ok-ink: #2E7A27;
   --block-orange: #FF8A5C;
   --block-yellow: #FFC35C;
   --block-green: #6CC75F;
   --block-blue: #5FA4F5;
   --block-violet: #A08BE0;
   --block-pink: #FFB3B0;
-  --on-block: #2B2733;
+  --on-block: #1E2638;
   --on-brand: #FFFFFF;
 
   --font-display: "Fredoka", "Noto Sans Myanmar", "Noto Sans KR", sans-serif;
@@ -24,28 +28,31 @@
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  --shadow: 0 1px 2px rgba(43, 39, 51, .06), 0 4px 16px rgba(43, 39, 51, .06);
+  --shadow: 0 1px 2px rgba(30, 38, 56, .05), 0 6px 20px rgba(30, 38, 56, .06);
   --gutter: 16px;
   --max: 1040px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --surface: #1E1B24;
-    --surface-tint: #2A2530;
-    --surface-sunk: #24202A;
-    --line: #3D3645;
-    --ink: #F4F1F8;
-    --ink-muted: #A9A2B3;
-    --brand: #FF7A7A;
-    --brand-strong: #FF9A94;
+    --page: #13161D;
+    --surface: #1B1F28;
+    --surface-tint: #1F2A3C;
+    --surface-sunk: #222733;
+    --line: #2F3542;
+    --ink: #EEF1F6;
+    --ink-muted: #A0A8B8;
+    --brand: #7AB0F5;
+    --brand-strong: #8DBBF7;
+    --logo-red: #FF7A7A;
+    --ok-ink: #8FD884;
     --block-orange: #FF9C74;
     --block-yellow: #FFCF7A;
     --block-green: #7FD372;
     --block-blue: #78B4F7;
     --block-violet: #B3A1E8;
     --block-pink: #E88C89;
-    --on-brand: #1E1B24;
+    --on-brand: #10151F;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 4px 16px rgba(0, 0, 0, .25);
   }
 }
@@ -56,7 +63,7 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--surface);
+  background: var(--page);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 16px;
@@ -124,7 +131,7 @@ p { margin: 0; }
 .brand-ko {
   font-family: var(--font-korean);
   font-size: 1.15rem;
-  color: var(--brand);
+  color: var(--logo-red);
   line-height: 1;
 }
 .brand-en {
@@ -132,7 +139,7 @@ p { margin: 0; }
   font-weight: 700;
   font-size: 1.05rem;
   letter-spacing: .02em;
-  color: var(--brand-strong);
+  color: var(--ink);
   line-height: 1;
 }
 
@@ -140,7 +147,8 @@ p { margin: 0; }
   display: flex;
   padding: 3px;
   gap: 2px;
-  background: var(--surface-tint);
+  background: var(--surface-sunk);
+  border: 1px solid var(--line);
   border-radius: 999px;
 }
 .lang button {
@@ -218,7 +226,7 @@ main {
 .btn:active { transform: translateY(1px); }
 .btn-primary { background: var(--brand-strong); color: var(--on-brand); }
 .btn-primary:hover { filter: brightness(1.08); }
-.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn-ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
 .btn-ghost:hover { border-color: var(--brand); }
 .btn-sm { min-height: 40px; padding: 0 16px; font-size: .9rem; }
 .btn[aria-disabled="true"] {
@@ -233,7 +241,9 @@ main {
 /* ---------- Hero ---------- */
 .hero {
   margin-top: 20px;
-  background: var(--surface-tint);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
   border-radius: var(--radius-lg);
   padding: 28px 20px 0;
   display: grid;
@@ -244,6 +254,7 @@ main {
   font-size: clamp(1.55rem, 5.2vw, 2.5rem);
   line-height: 1.5;
   font-weight: 700;
+  word-break: keep-all;
 }
 .hero h1 em {
   font-style: normal;
@@ -270,10 +281,10 @@ main {
 }
 .chips li {
   font-size: .82rem;
-  background: var(--surface);
+  background: var(--surface-tint);
   border-radius: 999px;
   padding: 4px 12px;
-  color: var(--ink);
+  color: var(--brand-strong);
 }
 .hero-art {
   align-self: end;
@@ -327,9 +338,9 @@ main {
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
   font-size: 1.1rem;
-  background: var(--unit);
-  color: var(--on-block);
-  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .12);
+  background: color-mix(in srgb, var(--unit) 22%, var(--surface));
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--unit) 55%, var(--surface));
 }
 .roadmap .soon .block {
   background: var(--surface-sunk);
@@ -356,7 +367,7 @@ main {
   border-radius: 999px;
   white-space: nowrap;
 }
-.pill-open { background: var(--block-green); color: var(--on-block); }
+.pill-open { background: color-mix(in srgb, var(--block-green) 18%, var(--surface)); color: var(--ok-ink); }
 .pill-soon { background: var(--surface-sunk); color: var(--ink-muted); box-shadow: inset 0 0 0 1px var(--line); }
 
 @media (min-width: 760px) {
@@ -396,7 +407,8 @@ main {
   display: block;
   padding: 8px 10px;
   border-radius: var(--radius-sm);
-  background: var(--surface-sunk);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-left: 4px solid var(--unit);
   line-height: 1.5;
 }
@@ -418,7 +430,7 @@ main {
 .helper {
   margin-top: 16px;
   padding: 18px 20px;
-  border: 1px solid var(--line);
+  background: var(--surface-tint);
   border-radius: var(--radius-lg);
   display: grid;
   gap: 12px;
@@ -464,7 +476,7 @@ main {
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--unit) 22%, var(--surface));
+  background: var(--surface-tint);
   color: var(--brand-strong);
   font-family: var(--font-korean);
   font-size: 2.1rem;
@@ -598,8 +610,8 @@ main {
   border-radius: 10px;
   display: grid;
   place-items: center;
-  background: color-mix(in srgb, var(--unit) 22%, var(--surface));
-  color: var(--ink);
+  background: var(--surface-tint);
+  color: var(--brand-strong);
 }
 .file .icon svg { width: 20px; height: 20px; }
 .file strong { display: block; font-size: .95rem; line-height: 1.5; }
