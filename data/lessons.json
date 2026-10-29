@@ -1,0 +1,351 @@
+{
+  "courses": [
+    {
+      "id": "hangul",
+      "color": "orange",
+      "status": "open",
+      "title": {
+        "my": "ကိုရီးယားစာ",
+        "ko": "한글",
+        "en": "Hangul"
+      },
+      "desc": {
+        "my": "ကိုရီးယား စာလုံးများကို အစကနေ ဖတ်တတ်၊ ရေးတတ်အောင်",
+        "ko": "한국어 글자를 처음부터 읽고 쓰기",
+        "en": "Read and write Korean letters from zero"
+      }
+    },
+    {
+      "id": "basic",
+      "color": "yellow",
+      "status": "soon",
+      "title": {
+        "my": "အခြေခံ စကားပြော",
+        "ko": "기초 회화",
+        "en": "Basic conversation"
+      },
+      "desc": {
+        "my": "နှုတ်ဆက်ခြင်းနှင့် နေ့စဉ်သုံး စကားများ",
+        "ko": "인사말과 매일 쓰는 표현",
+        "en": "Greetings and everyday phrases"
+      }
+    },
+    {
+      "id": "topik1",
+      "color": "blue",
+      "status": "soon",
+      "title": {
+        "my": "TOPIK I",
+        "ko": "TOPIK I",
+        "en": "TOPIK I"
+      },
+      "desc": {
+        "my": "အဆင့် ၁–၂ သဒ္ဒါ၊ ဝေါဟာရ၊ နားထောင်ခြင်း",
+        "ko": "1–2급 문법, 어휘, 듣기",
+        "en": "Level 1–2 grammar, vocabulary, listening"
+      }
+    },
+    {
+      "id": "eps",
+      "color": "green",
+      "status": "soon",
+      "title": {
+        "my": "EPS-TOPIK",
+        "ko": "EPS-TOPIK",
+        "en": "EPS-TOPIK"
+      },
+      "desc": {
+        "my": "ကိုရီးယားတွင် အလုပ်လုပ်ရန် စာမေးပွဲ ပြင်ဆင်ခြင်း",
+        "ko": "한국 취업을 위한 시험 준비",
+        "en": "Exam prep for working in Korea"
+      }
+    },
+    {
+      "id": "topik2",
+      "color": "violet",
+      "status": "soon",
+      "title": {
+        "my": "TOPIK II",
+        "ko": "TOPIK II",
+        "en": "TOPIK II"
+      },
+      "desc": {
+        "my": "အဆင့် ၃–၆ အဆင့်မြင့်",
+        "ko": "3–6급 중고급",
+        "en": "Level 3–6 intermediate and advanced"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "hangul-00",
+      "course": "hangul",
+      "number": 0,
+      "glyph": "안",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "ပထမဆုံး နှုတ်ဆက်စကား",
+        "ko": "첫 인사말",
+        "en": "First greetings"
+      },
+      "summary": {
+        "my": "안녕하세요 감사합니다 네 아니요",
+        "ko": "안녕하세요 감사합니다 네 아니요",
+        "en": "안녕하세요 감사합니다 네 아니요"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "id": "hangul-01",
+      "course": "hangul",
+      "number": 1,
+      "glyph": "아",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "အခြေခံ သရ ၁၀ လုံး",
+        "ko": "기본 모음",
+        "en": "The 10 basic vowels"
+      },
+      "summary": {
+        "my": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ",
+        "ko": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ",
+        "en": "ㅏ ㅓ ㅗ ㅜ ㅡ ㅣ ㅑ ㅕ ㅛ ㅠ"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "id": "hangul-02",
+      "course": "hangul",
+      "number": 2,
+      "glyph": "가",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "အခြေခံ ဗျည်း ၁၄ လုံး",
+        "ko": "기본 자음",
+        "en": "The 14 basic consonants"
+      },
+      "summary": {
+        "my": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ",
+        "ko": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ",
+        "en": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅅ ㅇ ㅈ ㅊ ㅋ ㅌ ㅍ ㅎ"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "id": "hangul-03",
+      "course": "hangul",
+      "number": 3,
+      "glyph": "강",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "အသတ်သံ",
+        "ko": "받침",
+        "en": "Final consonants (batchim)"
+      },
+      "summary": {
+        "my": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ",
+        "ko": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ",
+        "en": "ㄱ ㄴ ㄷ ㄹ ㅁ ㅂ ㅇ"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "id": "hangul-04",
+      "course": "hangul",
+      "number": 4,
+      "glyph": "왜",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "သရ ပေါင်း (နှစ်ထပ်သရ)",
+        "ko": "이중 모음",
+        "en": "Combined vowels"
+      },
+      "summary": {
+        "my": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ",
+        "ko": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ",
+        "en": "ㅐ ㅔ ㅒ ㅖ ㅘ ㅙ ㅚ ㅝ ㅞ ㅟ ㅢ"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    },
+    {
+      "id": "hangul-05",
+      "course": "hangul",
+      "number": 5,
+      "glyph": "빵",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "ဗျည်း နှစ်ထပ်",
+        "ko": "쌍자음",
+        "en": "Double consonants"
+      },
+      "summary": {
+        "my": "ㄲ ㄸ ㅃ ㅆ ㅉ",
+        "ko": "ㄲ ㄸ ㅃ ㅆ ㅉ",
+        "en": "ㄲ ㄸ ㅃ ㅆ ㅉ"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": ""
+        },
+        {
+          "type": "practice",
+          "path": ""
+        }
+      ]
+    }
+  ],
+  "route": [
+    {
+      "step": 0,
+      "status": "open",
+      "start": "hangul-00",
+      "color": "orange",
+      "title": {
+        "my": "ပထမ နှုတ်ဆက်စကား",
+        "ko": "첫 인사",
+        "en": "First greetings"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၀",
+        "ko": "0강",
+        "en": "Lesson 0"
+      },
+      "canDo": {
+        "my": "안녕하세요·감사합니다 ပြောတတ်မယ်",
+        "ko": "안녕하세요·감사합니다 말하기",
+        "en": "Say hello and thank you"
+      }
+    },
+    {
+      "step": 1,
+      "status": "open",
+      "start": "hangul-01",
+      "color": "orange",
+      "title": {
+        "my": "ကိုရီးယားစာ",
+        "ko": "한글",
+        "en": "Hangul"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၁–၅",
+        "ko": "1~5강",
+        "en": "Lessons 1–5"
+      },
+      "canDo": {
+        "my": "ကိုရီးယား စာလုံးအားလုံး ဖတ်တတ်မယ်",
+        "ko": "한글을 모두 읽을 수 있어요",
+        "en": "Read any Hangul"
+      }
+    },
+    {
+      "step": 2,
+      "status": "soon",
+      "color": "yellow",
+      "title": {
+        "my": "အခြေခံ ၁",
+        "ko": "초급 1",
+        "en": "Beginner 1"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၆–၂၅",
+        "ko": "6~25강",
+        "en": "Lessons 6–25"
+      },
+      "canDo": {
+        "my": "အခြေခံ ဝါကျ၊ ဂဏန်း၊ ကိုယ့်ကိုယ်ကို မိတ်ဆက်",
+        "ko": "기본 문장·숫자·자기소개",
+        "en": "Basic sentences, numbers, introducing yourself"
+      }
+    },
+    {
+      "step": 3,
+      "status": "soon",
+      "color": "blue",
+      "title": {
+        "my": "ကိုယ့်ပန်းတိုင် ရွေးပါ",
+        "ko": "목표 고르기",
+        "en": "Pick your goal"
+      },
+      "branches": [
+        {
+          "color": "blue",
+          "title": {
+            "my": "TOPIK I",
+            "ko": "TOPIK I",
+            "en": "TOPIK I"
+          },
+          "canDo": {
+            "my": "ပညာသင်·အထွေထွေ",
+            "ko": "유학·일반",
+            "en": "Study and general use"
+          }
+        },
+        {
+          "color": "green",
+          "title": {
+            "my": "EPS-TOPIK",
+            "ko": "EPS-TOPIK",
+            "en": "EPS-TOPIK"
+          },
+          "canDo": {
+            "my": "ကိုရီးယားမှာ အလုပ်လုပ်ရန်",
+            "ko": "한국 취업",
+            "en": "Working in Korea"
+          }
+        }
+      ]
+    }
+  ]
+}

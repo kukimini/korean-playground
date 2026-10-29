@@ -1,0 +1,6 @@
+# Files Cloudflare should not publish with the site
+.git
+.github
+.assetsignore
+.nojekyll
+README.md
