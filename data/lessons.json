@@ -78,6 +78,34 @@
   ],
   "lessons": [
     {
+      "id": "hangul-00",
+      "course": "hangul",
+      "number": 0,
+      "glyph": "안",
+      "published": true,
+      "youtube": "",
+      "title": {
+        "my": "ပထမဆုံး နှုတ်ဆက်စကား",
+        "ko": "첫 인사말",
+        "en": "First greetings"
+      },
+      "summary": {
+        "my": "안녕하세요 감사합니다 네 아니요",
+        "ko": "안녕하세요 감사합니다 네 아니요",
+        "en": "안녕하세요 감사합니다 네 아니요"
+      },
+      "files": [
+        {
+          "type": "lecture",
+          "path": "files/hangul-00/korean-playground-L00-lecture.pdf"
+        },
+        {
+          "type": "practice",
+          "path": "files/hangul-00/korean-playground-L00-practice.pdf"
+        }
+      ]
+    },
+    {
       "id": "hangul-01",
       "course": "hangul",
       "number": 1,
@@ -97,11 +125,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": ""
+          "path": "files/hangul-01/korean-playground-L01-lecture.pdf"
         },
         {
           "type": "practice",
-          "path": ""
+          "path": "files/hangul-01/korean-playground-L01-practice.pdf"
         }
       ]
     },
@@ -125,11 +153,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": ""
+          "path": "files/hangul-02/korean-playground-L02-lecture.pdf"
         },
         {
           "type": "practice",
-          "path": ""
+          "path": "files/hangul-02/korean-playground-L02-practice.pdf"
         }
       ]
     },
@@ -153,11 +181,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": ""
+          "path": "files/hangul-03/korean-playground-L03-lecture.pdf"
         },
         {
           "type": "practice",
-          "path": ""
+          "path": "files/hangul-03/korean-playground-L03-practice.pdf"
         }
       ]
     },
@@ -181,11 +209,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": ""
+          "path": "files/hangul-04/korean-playground-L04-lecture.pdf"
         },
         {
           "type": "practice",
-          "path": ""
+          "path": "files/hangul-04/korean-playground-L04-practice.pdf"
         }
       ]
     },
@@ -209,11 +237,11 @@
       "files": [
         {
           "type": "lecture",
-          "path": ""
+          "path": "files/hangul-05/korean-playground-L05-lecture.pdf"
         },
         {
           "type": "practice",
-          "path": ""
+          "path": "files/hangul-05/korean-playground-L05-practice.pdf"
         }
       ]
     }
