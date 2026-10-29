@@ -1,11 +1,11 @@
 /* Colors, fonts and radii follow brand/brand-guide.md and the design system. */
 :root {
   /* White page, navy text, blue as the point color; logo red only in the wordmark. */
-  --page: #F6F7F9;
+  --page: #FFFFFF;
   --surface: #FFFFFF;
-  --surface-tint: #EEF4FD;
-  --surface-sunk: #F4F6F9;
-  --line: #E4E8EE;
+  --surface-tint: #EFF5FE;
+  --surface-sunk: #F5F7FA;
+  --line: #E7EAF0;
   --ink: #1E2638;
   --ink-muted: #687085;
   --brand: #4A8BE8;
@@ -240,20 +240,26 @@ main {
 
 /* ---------- Hero ---------- */
 .hero {
-  margin-top: 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-  border-radius: var(--radius-lg);
-  padding: 28px 20px 0;
+  position: relative;
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 36px var(--gutter) 8px;
   display: grid;
   gap: 8px;
-  overflow: hidden;
+  isolation: isolate;
+}
+/* Soft glow in the logo blues and orange, no hard box */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 -40px;
+  z-index: -1;
+  background: radial-gradient(closest-side at 78% 45%, color-mix(in srgb, var(--block-blue) 16%, transparent), transparent);
 }
 .hero h1 {
-  font-size: clamp(1.55rem, 5.2vw, 2.5rem);
-  line-height: 1.5;
+  font-size: clamp(1.6rem, 5.4vw, 2.6rem);
+  line-height: 1.45;
   font-weight: 700;
+  letter-spacing: -.01em;
   word-break: keep-all;
 }
 .hero h1 em {
@@ -262,46 +268,79 @@ main {
 }
 .hero .lead {
   color: var(--ink-muted);
-  margin-top: 8px;
+  margin-top: 12px;
   max-width: 34em;
 }
 .hero .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 24px;
 }
+.hero .btn-primary { box-shadow: 0 6px 16px color-mix(in srgb, var(--brand-strong) 28%, transparent); }
 .chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
+  gap: 6px 16px;
+  margin-top: 20px;
   padding: 0;
   list-style: none;
 }
 .chips li {
-  font-size: .82rem;
-  background: var(--surface-tint);
-  border-radius: 999px;
-  padding: 4px 12px;
-  color: var(--brand-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .84rem;
+  color: var(--ink-muted);
 }
+.chips svg { width: 15px; height: 15px; color: var(--block-green); flex: none; }
+
+/* 한·국·어 blocks stacked like stairs, taken from the logo blocks */
 .hero-art {
-  align-self: end;
+  position: relative;
   justify-self: center;
-  width: min(64%, 300px);
-  margin-top: 16px;
-  display: block;
+  width: min(78%, 300px);
+  aspect-ratio: 3 / 2.1;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: end;
+  gap: 6%;
+}
+.tile {
+  aspect-ratio: 1;
+  border-radius: 22%;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-korean);
+  font-size: clamp(2rem, 9vw, 3.4rem);
+  line-height: 1;
+  color: #fff;
+  background: var(--tile);
+  box-shadow: inset 0 -7px 0 rgba(0, 0, 0, .14), 0 10px 22px color-mix(in srgb, var(--tile) 30%, transparent);
+}
+.tile-orange { --tile: var(--block-orange); }
+.tile-blue   { --tile: var(--block-blue); margin-bottom: 30%; }
+.tile-green  { --tile: var(--block-green); margin-bottom: 60%; }
+.cube {
+  position: absolute;
+  right: 4%;
+  top: -4%;
+  width: 14%;
+  aspect-ratio: 1;
+  border-radius: 22%;
+  background: var(--block-yellow);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .12);
+  transform: rotate(12deg);
 }
 @media (min-width: 760px) {
   .hero {
-    grid-template-columns: 1.25fr 1fr;
+    grid-template-columns: 1.3fr 1fr;
     align-items: center;
-    padding: 48px 48px 0;
-    gap: 32px;
+    padding: 64px var(--gutter) 40px;
+    gap: 40px;
   }
-  .hero-copy { padding-bottom: 48px; }
-  .hero-art { width: 100%; max-width: 400px; margin-top: 0; }
+  .hero-art { width: 100%; max-width: 340px; margin-top: 0; }
 }
 
 /* ---------- Roadmap ---------- */
@@ -430,7 +469,8 @@ main {
 .helper {
   margin-top: 16px;
   padding: 18px 20px;
-  background: var(--surface-tint);
+  background: var(--surface);
+  box-shadow: var(--shadow);
   border-radius: var(--radius-lg);
   display: grid;
   gap: 12px;
@@ -466,7 +506,7 @@ main {
   transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
 }
 .lesson-card:hover {
-  border-color: var(--unit);
+  border-color: color-mix(in srgb, var(--brand) 40%, var(--line));
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
@@ -476,8 +516,9 @@ main {
   border-radius: 14px;
   display: grid;
   place-items: center;
-  background: var(--surface-tint);
-  color: var(--brand-strong);
+  background: var(--tile, var(--block-blue));
+  color: #fff;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, .13);
   font-family: var(--font-korean);
   font-size: 2.1rem;
   line-height: 1;
@@ -497,6 +538,12 @@ main {
   line-height: 1.5;
 }
 .lesson-card .chev { color: var(--ink-muted); width: 20px; height: 20px; }
+
+.lesson-grid a:nth-child(5n+1) .glyph { --tile: var(--block-orange); }
+.lesson-grid a:nth-child(5n+2) .glyph { --tile: var(--block-blue); }
+.lesson-grid a:nth-child(5n+3) .glyph { --tile: var(--block-green); }
+.lesson-grid a:nth-child(5n+4) .glyph { --tile: var(--block-violet); }
+.lesson-grid a:nth-child(5n+5) .glyph { --tile: #F47174; }
 
 /* ---------- Lesson page ---------- */
 .crumb {
@@ -698,4 +745,15 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
+}
+
+/* Roadmap sits on a soft panel so it reads as one guide */
+#roadmap {
+  background: var(--surface-sunk);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px 8px;
+}
+#roadmap .branch { background: var(--surface); }
+@media (min-width: 760px) {
+  #roadmap { padding: 32px 32px 20px; }
 }

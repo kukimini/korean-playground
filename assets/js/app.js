@@ -12,6 +12,7 @@ const ICON = {
   download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
   file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>',
   pencil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
   play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>'
 };
 
@@ -137,12 +138,17 @@ function renderHome() {
           <a class="btn btn-ghost" href="#lessons" data-scroll>${esc(t("getPdf"))}</a>
         </div>
         <ul class="chips">
-          <li>${esc(t("chipFree"))}</li>
-          <li>${esc(t("chipLessons", { n: num(lessons.length) }))}</li>
-          <li>${esc(t("chipLangs"))}</li>
+          <li>${ICON.check}${esc(t("chipFree"))}</li>
+          <li>${ICON.check}${esc(t("chipLessons", { n: num(lessons.length) }))}</li>
+          <li>${ICON.check}${esc(t("chipLangs"))}</li>
         </ul>
       </div>
-      <img class="hero-art" src="assets/img/castle-480.png" alt="" width="480" height="290">
+      <div class="hero-art" aria-hidden="true">
+        <span class="tile tile-orange">한</span>
+        <span class="tile tile-blue">국</span>
+        <span class="tile tile-green">어</span>
+        <span class="cube"></span>
+      </div>
     </section>
 
     <section class="helper" id="helper" aria-live="polite"></section>
