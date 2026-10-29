@@ -361,11 +361,14 @@ main {
 
 @media (min-width: 760px) {
   .roadmap {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
   }
   .roadmap li {
     grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    align-content: start;
+    align-items: start;
     gap: 10px;
     padding: 0;
   }
@@ -377,6 +380,56 @@ main {
     width: auto;
     height: 2px;
   }
+}
+
+.step-label {
+  display: block;
+  font-family: "Fredoka", var(--font-body);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--ink-muted);
+}
+.roadmap p b { color: var(--ink); font-weight: 700; }
+.branches { display: grid; gap: 6px; margin-top: 8px; }
+.branch {
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-sunk);
+  border-left: 4px solid var(--unit);
+  line-height: 1.5;
+}
+.branch strong { display: block; font-size: .9rem; }
+.branch small { color: var(--ink-muted); font-size: .8rem; }
+.step-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  min-height: 36px;
+  margin-top: 4px;
+  font-size: .88rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.step-link svg { width: 16px; height: 16px; }
+
+/* ---------- Where-to-start helper ---------- */
+.helper {
+  margin-top: 16px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 12px;
+}
+.helper h2 { font-size: 1.1rem; }
+.helper p { color: var(--ink-muted); font-size: .9rem; }
+.helper .q { color: var(--ink); font-weight: 700; font-size: 1rem; }
+.helper .note { margin-top: 4px; }
+.helper-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+@media (min-width: 760px) {
+  .helper { grid-template-columns: 1fr 1.3fr; align-items: center; padding: 22px 28px; }
 }
 
 /* ---------- Lesson cards ---------- */

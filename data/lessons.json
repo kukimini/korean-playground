@@ -245,5 +245,107 @@
         }
       ]
     }
+  ],
+  "route": [
+    {
+      "step": 0,
+      "status": "open",
+      "start": "hangul-00",
+      "color": "orange",
+      "title": {
+        "my": "ပထမ နှုတ်ဆက်စကား",
+        "ko": "첫 인사",
+        "en": "First greetings"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၀",
+        "ko": "0강",
+        "en": "Lesson 0"
+      },
+      "canDo": {
+        "my": "안녕하세요·감사합니다 ပြောတတ်မယ်",
+        "ko": "안녕하세요·감사합니다 말하기",
+        "en": "Say hello and thank you"
+      }
+    },
+    {
+      "step": 1,
+      "status": "open",
+      "start": "hangul-01",
+      "color": "orange",
+      "title": {
+        "my": "ဟန်ဂူလ်",
+        "ko": "한글",
+        "en": "Hangul"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၁–၅",
+        "ko": "1~5강",
+        "en": "Lessons 1–5"
+      },
+      "canDo": {
+        "my": "ဟန်ဂူလ် စာလုံးအားလုံး ဖတ်တတ်မယ်",
+        "ko": "한글을 모두 읽을 수 있어요",
+        "en": "Read any Hangul"
+      }
+    },
+    {
+      "step": 2,
+      "status": "soon",
+      "color": "yellow",
+      "title": {
+        "my": "အခြေခံ ၁",
+        "ko": "초급 1",
+        "en": "Beginner 1"
+      },
+      "range": {
+        "my": "သင်ခန်းစာ ၆–၂၅",
+        "ko": "6~25강",
+        "en": "Lessons 6–25"
+      },
+      "canDo": {
+        "my": "အခြေခံ ဝါကျ၊ ဂဏန်း၊ ကိုယ့်ကိုယ်ကို မိတ်ဆက်",
+        "ko": "기본 문장·숫자·자기소개",
+        "en": "Basic sentences, numbers, introducing yourself"
+      }
+    },
+    {
+      "step": 3,
+      "status": "soon",
+      "color": "blue",
+      "title": {
+        "my": "ကိုယ့်ပန်းတိုင် ရွေးပါ",
+        "ko": "목표 고르기",
+        "en": "Pick your goal"
+      },
+      "branches": [
+        {
+          "color": "blue",
+          "title": {
+            "my": "TOPIK I",
+            "ko": "TOPIK I",
+            "en": "TOPIK I"
+          },
+          "canDo": {
+            "my": "ပညာသင်·အထွေထွေ",
+            "ko": "유학·일반",
+            "en": "Study and general use"
+          }
+        },
+        {
+          "color": "green",
+          "title": {
+            "my": "EPS-TOPIK",
+            "ko": "EPS-TOPIK",
+            "en": "EPS-TOPIK"
+          },
+          "canDo": {
+            "my": "ကိုရီးယားမှာ အလုပ်လုပ်ရန်",
+            "ko": "한국 취업",
+            "en": "Working in Korea"
+          }
+        }
+      ]
+    }
   ]
 }
