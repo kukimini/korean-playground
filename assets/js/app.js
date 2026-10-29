@@ -79,16 +79,24 @@ function renderHome() {
   // "{word}" in the tagline is highlighted.
   const tagline = esc(t("tagline")).replace(/\{(.+?)\}/, "<em>$1</em>");
 
-  const roadmap = state.courses.map((c, i) => {
-    const open = c.status === "open";
+  const roadmap = (state.route || []).map(r => {
+    const open = r.status === "open";
+    const branches = (r.branches || []).map(b => `
+      <span class="branch unit-${esc(b.color)}">
+        <strong>${esc(pick(b.title))}</strong>
+        <small>${esc(pick(b.canDo))}</small>
+      </span>`).join("");
     return `
-      <li class="unit-${esc(c.color)} ${open ? "" : "soon"}">
-        <span class="block">${open ? num(i + 1) : ICON.lock}</span>
+      <li class="unit-${esc(r.color)} ${open ? "" : "soon"}">
+        <span class="block">${open ? num(r.step) : ICON.lock}</span>
         <div class="body">
-          <h3>${esc(pick(c.title))}
+          <span class="step-label">STEP ${num(r.step)}${r.range ? ` · ${esc(pick(r.range))}` : ""}</span>
+          <h3>${esc(pick(r.title))}
             <span class="pill ${open ? "pill-open" : "pill-soon"}">${esc(t(open ? "open" : "soon"))}</span>
           </h3>
-          <p>${esc(pick(c.desc))}</p>
+          ${r.canDo ? `<p><b>${esc(t("after"))}</b> ${esc(pick(r.canDo))}</p>` : ""}
+          ${branches ? `<div class="branches">${branches}</div>` : ""}
+          ${open && r.start ? `<a class="step-link" href="#/lesson/${esc(r.start)}">${esc(t("startHere"))} ${ICON.chevron}</a>` : ""}
         </div>
       </li>`;
   }).join("");
@@ -126,7 +134,7 @@ function renderHome() {
         <p class="lead">${esc(t("heroSub"))}</p>
         <div class="actions">
           ${first ? `<a class="btn btn-primary" href="#/lesson/${esc(first.id)}">${esc(t("startHangul"))} ${ICON.chevron}</a>` : ""}
-          <a class="btn btn-ghost" href="#roadmap" data-scroll>${esc(t("viewRoadmap"))}</a>
+          <a class="btn btn-ghost" href="#lessons" data-scroll>${esc(t("getPdf"))}</a>
         </div>
         <ul class="chips">
           <li>${esc(t("chipFree"))}</li>
@@ -136,6 +144,8 @@ function renderHome() {
       </div>
       <img class="hero-art" src="assets/img/castle-480.png" alt="" width="480" height="290">
     </section>
+
+    <section class="helper" id="helper" aria-live="polite"></section>
 
     <section class="section" id="roadmap">
       <div class="section-head">
@@ -149,6 +159,47 @@ function renderHome() {
     ${waitlistBlock()}
     ${adBlock()}`;
   document.title = state.site.name || "한국어 PLAYGROUND";
+  renderHelper();
+}
+
+// "Not sure where to start?" — two yes/no questions that point to a route step.
+function renderHelper(stage = "q1") {
+  const box = document.getElementById("helper");
+  if (!box) return;
+  const head = `
+    <div>
+      <h2>${esc(t("helperTitle"))}</h2>
+      <p>${esc(t("helperSub"))}</p>
+    </div>`;
+  const ask = q => `
+    <div class="helper-q">
+      <p class="q">${esc(t(q))}</p>
+      <div class="helper-actions">
+        <button class="btn btn-ghost btn-sm" type="button" data-answer="${q}:no">${esc(t(q + "no"))}</button>
+        <button class="btn btn-ghost btn-sm" type="button" data-answer="${q}:yes">${esc(t(q + "yes"))}</button>
+      </div>
+    </div>`;
+  let body;
+  if (stage === "q1" || stage === "q2") {
+    body = ask(stage);
+  } else {
+    const n = Number(stage);
+    const step = (state.route || []).find(r => r.step === n) || {};
+    const open = step.status === "open" && step.start;
+    const review = (state.route || []).find(r => r.step === 1) || {};
+    body = `
+      <div class="helper-q">
+        <p class="q">${esc(t("result", { n: num(n) }))}</p>
+        ${open ? "" : `<p class="note">${esc(t("resultSoon"))}</p>`}
+        <div class="helper-actions">
+          <button class="btn btn-ghost btn-sm" type="button" data-answer="restart">${esc(t("restart"))}</button>
+          ${open
+            ? `<a class="btn btn-primary btn-sm" href="#/lesson/${esc(step.start)}">${esc(t("go"))} ${ICON.chevron}</a>`
+            : review.start ? `<a class="btn btn-primary btn-sm" href="#/lesson/${esc(review.start)}">${esc(t("review"))} ${ICON.chevron}</a>` : ""}
+        </div>
+      </div>`;
+  }
+  box.innerHTML = head + body;
 }
 
 function renderLesson(id) {
@@ -254,7 +305,7 @@ async function init() {
     const [site, i18n, data] = await Promise.all([
       load("data/site.json"), load("data/i18n.json"), load("data/lessons.json")
     ]);
-    Object.assign(state, { site, t: i18n, courses: data.courses, lessons: data.lessons });
+    Object.assign(state, { site, t: i18n, courses: data.courses, lessons: data.lessons, route: data.route });
   } catch (e) {
     app.innerHTML = `<p>Could not load data. ${esc(e.message)}</p>`;
     return;
@@ -263,8 +314,14 @@ async function init() {
   document.querySelectorAll(".lang button").forEach(b =>
     b.addEventListener("click", () => setLang(b.dataset.lang)));
   window.addEventListener("hashchange", route);
-  // In-page anchors (#roadmap) scroll instead of routing.
+  // In-page anchors (#lessons) scroll instead of routing.
   app.addEventListener("click", e => {
+    const ans = e.target.closest("[data-answer]");
+    if (ans) {
+      const next = { "q1:no": "0", "q1:yes": "q2", "q2:no": "2", "q2:yes": "3", "restart": "q1" };
+      renderHelper(next[ans.dataset.answer] || "q1");
+      return;
+    }
     const a = e.target.closest("a[data-scroll]");
     if (!a) return;
     e.preventDefault();
