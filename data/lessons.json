@@ -81,6 +81,7 @@
       "id": "hangul-01",
       "course": "hangul",
       "number": 1,
+      "glyph": "아",
       "published": true,
       "youtube": "",
       "title": {
@@ -108,6 +109,7 @@
       "id": "hangul-02",
       "course": "hangul",
       "number": 2,
+      "glyph": "가",
       "published": true,
       "youtube": "",
       "title": {
@@ -135,6 +137,7 @@
       "id": "hangul-03",
       "course": "hangul",
       "number": 3,
+      "glyph": "각",
       "published": true,
       "youtube": "",
       "title": {
@@ -162,6 +165,7 @@
       "id": "hangul-04",
       "course": "hangul",
       "number": 4,
+      "glyph": "애",
       "published": true,
       "youtube": "",
       "title": {
@@ -189,6 +193,7 @@
       "id": "hangul-05",
       "course": "hangul",
       "number": 5,
+      "glyph": "까",
       "published": true,
       "youtube": "",
       "title": {

@@ -5,10 +5,25 @@ const state = { site: {}, t: {}, courses: [], lessons: [], lang: "my" };
 const LANGS = ["my", "ko", "en"];
 const app = document.getElementById("app");
 
+const ICON = {
+  chevron: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>',
+  back: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
+  file: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>',
+  pencil: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>'
+};
+
 function esc(s) {
   return String(s ?? "").replace(/[&<>"']/g, c => ({
     "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
   })[c]);
+}
+
+// Myanmar digits in the Burmese UI.
+function num(n) {
+  return state.lang === "my" ? String(n).replace(/\d/g, d => "၀၁၂၃၄၅၆၇၈၉"[d]) : String(n);
 }
 
 // Text in the current language, falling back to Burmese then Korean.
@@ -21,24 +36,30 @@ function helper(obj) {
   if (!obj || typeof obj === "string") return "";
   return state.lang === "my" ? obj.ko || "" : obj.my || "";
 }
-function t(key) {
-  return (state.t[state.lang] || {})[key] || (state.t.my || {})[key] || key;
+function t(key, vars = {}) {
+  const s = (state.t[state.lang] || {})[key] || (state.t.my || {})[key] || key;
+  return s.replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
 }
 
 function course(id) { return state.courses.find(c => c.id === id) || {}; }
 function published() { return state.lessons.filter(l => l.published); }
 
 function lessonLabel(l) {
-  return state.lang === "ko" ? `${l.number}${t("lesson")}` : `${t("lesson")} ${l.number}`;
+  return state.lang === "ko" ? `${l.number}${t("lesson")}` : `${t("lesson")} ${num(l.number)}`;
+}
+function glyph(l) {
+  return l.glyph || String(pick(l.summary)).split(/\s+/)[0] || "";
 }
 
 function waitlistBlock() {
   if (!state.site.waitlistUrl) return "";
   return `
     <section class="waitlist">
-      <h2>${esc(t("waitlistTitle"))}</h2>
-      <p>${esc(t("waitlistText"))}</p>
-      <a class="button" href="${esc(state.site.waitlistUrl)}" target="_blank" rel="noopener">${esc(t("waitlistButton"))}</a>
+      <div>
+        <h2>${esc(t("waitlistTitle"))}</h2>
+        <p>${esc(t("waitlistText"))}</p>
+      </div>
+      <a class="btn btn-primary" href="${esc(state.site.waitlistUrl)}" target="_blank" rel="noopener">${esc(t("waitlistButton"))}</a>
     </section>`;
 }
 
@@ -47,96 +68,144 @@ function adBlock() {
 }
 
 function renderHome() {
-  const roadmap = state.courses.map((c, i) => `
-    <li class="unit-${esc(c.color)} ${c.status === "soon" ? "soon" : ""}">
-      <span class="step">${i + 1}</span>
-      <div>
-        <h3>${esc(pick(c.title))}</h3>
-        <p>${esc(pick(c.desc))}</p>
-      </div>
-      <span class="status">${esc(t(c.status === "open" ? "open" : "soon"))}</span>
-    </li>`).join("");
+  const lessons = published();
+  const first = lessons[0];
+  // "{word}" in the tagline is highlighted.
+  const tagline = esc(t("tagline")).replace(/\{(.+?)\}/, "<em>$1</em>");
+
+  const roadmap = state.courses.map((c, i) => {
+    const open = c.status === "open";
+    return `
+      <li class="unit-${esc(c.color)} ${open ? "" : "soon"}">
+        <span class="block">${open ? num(i + 1) : ICON.lock}</span>
+        <div class="body">
+          <h3>${esc(pick(c.title))}
+            <span class="pill ${open ? "pill-open" : "pill-soon"}">${esc(t(open ? "open" : "soon"))}</span>
+          </h3>
+          <p>${esc(pick(c.desc))}</p>
+        </div>
+      </li>`;
+  }).join("");
 
   const groups = state.courses
-    .map(c => ({ c, items: published().filter(l => l.course === c.id) }))
+    .map(c => ({ c, items: lessons.filter(l => l.course === c.id) }))
     .filter(g => g.items.length)
     .map(({ c, items }) => `
-      <h2 class="section-title">${esc(pick(c.title))}</h2>
-      <div class="lesson-grid">
-        ${items.map(l => `
-          <a class="lesson-card unit-${esc(c.color)}" href="#/lesson/${esc(l.id)}">
-            <span class="tag">${esc(pick(c.title))} · ${esc(lessonLabel(l))}</span>
-            <span class="free">${esc(t("free"))}</span>
-            <h3>${esc(pick(l.title))}</h3>
-            <p class="sub">${esc(helper(l.title))}</p>
-            <p class="jamo">${esc(pick(l.summary))}</p>
-          </a>`).join("")}
-      </div>`).join("");
+      <section class="section unit-${esc(c.color)}" id="lessons">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">${esc(t("allFree"))}</span>
+            <h2>${esc(pick(c.title))}</h2>
+          </div>
+          <p>${esc(t("chipLessons", { n: num(items.length) }))}</p>
+        </div>
+        <div class="lesson-grid">
+          ${items.map(l => `
+            <a class="lesson-card" href="#/lesson/${esc(l.id)}">
+              <span class="glyph" aria-hidden="true">${esc(glyph(l))}</span>
+              <span>
+                <span class="num">${esc(lessonLabel(l))}</span>
+                <h3>${esc(pick(l.title))}</h3>
+                <span class="sub">${esc(helper(l.title))}</span>
+              </span>
+              <span class="chev">${ICON.chevron}</span>
+            </a>`).join("")}
+        </div>
+      </section>`).join("");
 
-  const first = published()[0];
   app.innerHTML = `
     <section class="hero">
-      <div>
-        <h1>${esc(t("tagline"))}</h1>
-        <p>${esc(t("heroSub"))}</p>
-        ${first ? `<a class="button" href="#/lesson/${esc(first.id)}">${esc(t("startHangul"))}</a>` : ""}
+      <div class="hero-copy">
+        <h1>${tagline}</h1>
+        <p class="lead">${esc(t("heroSub"))}</p>
+        <div class="actions">
+          ${first ? `<a class="btn btn-primary" href="#/lesson/${esc(first.id)}">${esc(t("startHangul"))} ${ICON.chevron}</a>` : ""}
+          <a class="btn btn-ghost" href="#roadmap" data-scroll>${esc(t("viewRoadmap"))}</a>
+        </div>
+        <ul class="chips">
+          <li>${esc(t("chipFree"))}</li>
+          <li>${esc(t("chipLessons", { n: num(lessons.length) }))}</li>
+          <li>${esc(t("chipLangs"))}</li>
+        </ul>
       </div>
-      <img src="assets/img/logo-symbol-wordmark.png" alt="KOREAN PLAYGROUND">
+      <img class="hero-art" src="assets/img/castle-480.png" alt="" width="480" height="290">
     </section>
-    <h2 class="section-title">${esc(t("roadmap"))}</h2>
-    <ol class="roadmap">${roadmap}</ol>
+
+    <section class="section" id="roadmap">
+      <div class="section-head">
+        <h2>${esc(t("roadmap"))}</h2>
+        <p>${esc(t("roadmapSub"))}</p>
+      </div>
+      <ol class="roadmap">${roadmap}</ol>
+    </section>
+
     ${groups}
     ${waitlistBlock()}
     ${adBlock()}`;
-  document.title = state.site.name || "KOREAN PLAYGROUND";
+  document.title = state.site.name || "한국어 PLAYGROUND";
 }
 
 function renderLesson(id) {
   const list = published();
   const i = list.findIndex(l => l.id === id);
   if (i < 0) {
-    app.innerHTML = `<p class="crumb"><a href="#/">← ${esc(t("back"))}</a></p><h1>${esc(t("notFound"))}</h1>`;
+    app.innerHTML = `<a class="crumb" href="#/">${ICON.back} ${esc(t("back"))}</a><h1>${esc(t("notFound"))}</h1>`;
     return;
   }
   const l = list[i];
   const c = course(l.course);
+  const inCourse = list.filter(x => x.course === l.course);
+  const pos = inCourse.indexOf(l) + 1;
   const prev = list[i - 1];
   const next = list[i + 1];
 
   const video = l.youtube
     ? `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(l.youtube)}" title="${esc(pick(l.title))}" allowfullscreen loading="lazy"></iframe>`
-    : `<span>${esc(t("videoSoon"))}</span>`;
+    : `<span class="play">${ICON.play}</span><span>${esc(t("videoSoon"))}</span>`;
 
   const files = (l.files || []).map(f => `
     <div class="file">
+      <span class="icon">${f.type === "practice" ? ICON.pencil : ICON.file}</span>
       <div>
         <strong>${esc(t(f.type))}</strong>
         <small>${esc(t("free"))} · PDF</small>
       </div>
       ${f.path
-        ? `<a class="button" href="${esc(f.path)}" download>${esc(t("download"))}</a>`
-        : `<span class="button" aria-disabled="true">${esc(t("preparing"))}</span>`}
+        ? `<a class="btn btn-primary btn-sm" href="${esc(f.path)}" download>${ICON.download} ${esc(t("download"))}</a>`
+        : `<span class="btn btn-sm" aria-disabled="true">${esc(t("preparing"))}</span>`}
     </div>`).join("");
 
   app.innerHTML = `
-    <a class="crumb" href="#/">← ${esc(t("back"))}</a>
-    <div class="lesson-head unit-${esc(c.color)}">
-      <span class="tag">${esc(pick(c.title))} · ${esc(lessonLabel(l))}</span>
-      <h1>${esc(pick(l.title))}</h1>
-      <p class="sub">${esc(helper(l.title))}</p>
-      <p class="jamo-hero">${esc(pick(l.summary))}</p>
+    <div class="unit-${esc(c.color)}">
+      <a class="crumb" href="#/">${ICON.back} ${esc(t("back"))}</a>
+      <div class="progress">
+        <span>${esc(pick(c.title))} · ${esc(t("of", { i: num(pos), n: num(inCourse.length) }))}</span>
+        <span class="bar"><span style="width:${Math.round(pos / inCourse.length * 100)}%"></span></span>
+      </div>
+      <div class="lesson-head">
+        <span class="glyph" aria-hidden="true">${esc(glyph(l))}</span>
+        <div>
+          <span class="eyebrow">${esc(lessonLabel(l))}</span>
+          <h1>${esc(pick(l.title))}</h1>
+          <p class="sub">${esc(helper(l.title))}</p>
+        </div>
+      </div>
+      <p class="jamo-row" lang="ko">${esc(l.summary?.ko || pick(l.summary))}</p>
+      <div class="lesson-body">
+        <div class="video">${video}</div>
+        <div class="files">
+          <h2>${esc(t("downloads"))}</h2>
+          ${files}
+        </div>
+      </div>
+      <nav class="pager">
+        ${prev ? `<a href="#/lesson/${esc(prev.id)}"><small>← ${esc(t("prev"))}</small><strong>${esc(pick(prev.title))}</strong></a>` : ""}
+        ${next ? `<a class="next" href="#/lesson/${esc(next.id)}"><small>${esc(t("next"))} →</small><strong>${esc(pick(next.title))}</strong></a>` : ""}
+      </nav>
     </div>
-    <div class="lesson-body unit-${esc(c.color)}">
-      <div class="video">${video}</div>
-      <div class="files">${files}</div>
-    </div>
-    <nav class="pager">
-      ${prev ? `<a href="#/lesson/${esc(prev.id)}">← ${esc(t("prev"))}: ${esc(pick(prev.title))}</a>` : "<span></span>"}
-      ${next ? `<a href="#/lesson/${esc(next.id)}">${esc(t("next"))}: ${esc(pick(next.title))} →</a>` : "<span></span>"}
-    </nav>
     ${waitlistBlock()}
     ${adBlock()}`;
-  document.title = `${pick(l.title)} · ${state.site.name || "KOREAN PLAYGROUND"}`;
+  document.title = `${pick(l.title)} · ${state.site.name || "한국어 PLAYGROUND"}`;
 }
 
 function renderFooter() {
@@ -161,7 +230,9 @@ function setLang(lang) {
   document.querySelectorAll(".lang button").forEach(b =>
     b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
   try { localStorage.setItem("kp-lang", state.lang); } catch (e) {}
+  const y = window.scrollY;
   route();
+  window.scrollTo(0, y);
 }
 
 async function load(path) {
@@ -184,6 +255,13 @@ async function init() {
   document.querySelectorAll(".lang button").forEach(b =>
     b.addEventListener("click", () => setLang(b.dataset.lang)));
   window.addEventListener("hashchange", route);
+  // In-page anchors (#roadmap) scroll instead of routing.
+  app.addEventListener("click", e => {
+    const a = e.target.closest("a[data-scroll]");
+    if (!a) return;
+    e.preventDefault();
+    document.querySelector(a.getAttribute("href"))?.scrollIntoView({ behavior: "smooth" });
+  });
 
   let saved = null;
   try { saved = localStorage.getItem("kp-lang"); } catch (e) {}
