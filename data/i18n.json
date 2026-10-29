@@ -1,7 +1,6 @@
 {
   "my": {
     "tagline": "တစ်ယောက်တည်း ကိုရီးယားစာ လေ့လာနည်း၊ {လမ်းပြပေးမယ်}",
-    "heroSub": "ဟန်ဂူလ်မှ TOPIK·EPS-TOPIK အထိ အဆင့်လိုက် လမ်းပြ · PDF သင်ခန်းစာ အခမဲ့",
     "startHangul": "သင်ခန်းစာ ၀ မှ စတင်ရန်",
     "roadmap": "ဒီလမ်းအတိုင်း လိုက်ရုံပဲ",
     "lessons": "သင်ခန်းစာများ",
@@ -49,7 +48,6 @@
   },
   "ko": {
     "tagline": "혼자 배우는 한국어, {길을 알려 드려요}",
-    "heroSub": "한글부터 TOPIK·EPS-TOPIK까지 단계별 안내 · PDF 무료",
     "startHangul": "0강부터 시작하기",
     "roadmap": "이 길대로 따라오기만 하면 돼요",
     "lessons": "강의 목록",
@@ -97,7 +95,6 @@
   },
   "en": {
     "tagline": "Studying Korean on your own? {We'll guide the way}",
-    "heroSub": "Step-by-step guide from Hangul to TOPIK and EPS-TOPIK · Free PDFs",
     "startHangul": "Start from lesson 0",
     "roadmap": "Just follow this path",
     "lessons": "Lessons",
